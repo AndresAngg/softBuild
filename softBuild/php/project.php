@@ -18,18 +18,14 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
 </head>
-
 <body>
     <script src="../js/head.js"></script>
     <div class="banner">
         <h1>Proyectos</h1>
     </div>
     <?php
-
       $conex = mysqli_connect("localhost:3306","root","","software");
-
     ?>
-
     <div class="cont">
         <form method="POST">
             <div class="form-row">
@@ -50,7 +46,6 @@
             </div>
             <div class="form-row">
                 <div class="col-md-4  mb-3">
-
                     <input type="text" placeholder="Identificación" name="xid" class="form-control">
                 </div>
             </div>
@@ -73,9 +68,7 @@
               </thead>
               <tbody>
                   <?php
-                
                      $where="";
-                   
                      if(isset($_POST['buscar'])){
                        if(empty($_POST['xtipo'])){
                            $where = "where identi like '".$_POST['xid']."%'";
@@ -86,38 +79,28 @@
                         $where = "where identi like '".$_POST['xid']."%' and Tipo like '".$_POST['xtipo']."%'";
                        }
                      }
-
                     if ($conex){
                         $consulta = "SELECT * FROM sistema $where";
                         $resultado = mysqli_query($conex,$consulta);
                         if($resultado){
-                            
                             while($row = $resultado->fetch_array()){
-                            
                                 ?>
                                 <tr>
-
-                                    
-                                   
                                     <td><?php echo $row['identi'] ?></td>
                                     <td><?php echo $row['Nombre'] ?></td>
                                     <td><?php echo $row['Correo'] ?></td>
                                     <td><?php echo $row['Negocio'] ?></td>
                                     <td><?php echo $row['Tipo'] ?></td>
                                     <td><?php echo $row['Descri'] ?></td>
-                                
                                 </tr>
                                 <?php
                             }
                         }
                     }
                   ?>
-
-                  
               </tbody>
       </table>
     </div>
     <script class="mt-5" src="../js/footerr.js"></script>
 </body>
-
 </html>
